@@ -1,12 +1,15 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { ProductGrid } from './components/product-grid/product-grid';
+import { NavBar } from './components/nav-bar/nav-bar';
+import { FooterBar } from './components/footer-bar/footer-bar';
+import { Cart } from './components/cart/cart';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [CommonModule, NavBar, ProductGrid, FooterBar, Cart],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('elearnio-angular-test');
+  showCart: boolean = true;
 }
