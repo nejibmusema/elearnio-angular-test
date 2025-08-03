@@ -1,15 +1,25 @@
 import { Component } from '@angular/core';
-import { ProductGrid } from './components/product-grid/product-grid';
-import { NavBar } from './components/nav-bar/nav-bar';
-import { FooterBar } from './components/footer-bar/footer-bar';
-import { Cart } from './components/cart/cart';
 import { CommonModule } from '@angular/common';
+import { ProductGridComponent } from './components/product-grid/product-grid.component';
+import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
+import { CartComponent } from './components/cart/cart.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, NavBar, ProductGrid, FooterBar, Cart],
+  imports: [
+    CommonModule,
+    NavBarComponent,
+    ProductGridComponent,
+    FooterBarComponent,
+    CartComponent,
+  ],
   templateUrl: './app.html',
 })
 export class App {
-  showCart: boolean = true;
+  showCart: boolean = false;
+
+  handleCartToggle = (isOpen: boolean) => {
+    this.showCart = isOpen;
+  };
 }

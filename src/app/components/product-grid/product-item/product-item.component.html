@@ -1,0 +1,21 @@
+<div
+  class="relative p-8 flex flex-col items-center bg-white shadow-md rounded-xl border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+>
+  <img
+    [src]="product().image"
+    alt="{{ product().title }}"
+    class="w-full h-64 object-fit"
+  />
+  <div class="p-4 flex flex-col justify-start w-full">
+    <h2 class="text-xl font-bold truncate">{{ product().title }}</h2>
+    <span>Price: {{ product().price | number: "1.2-2" }} </span>
+  </div>
+  <div class="w-full">
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded w-full"
+      (click)="onAddToCart(product())"
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>

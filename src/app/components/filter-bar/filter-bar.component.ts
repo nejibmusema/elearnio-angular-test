@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'filter-bar',
   imports: [],
-  templateUrl: './filter-bar.html',
-  styleUrl: './filter-bar.scss',
+  templateUrl: './filter-bar.component.html',
 })
-export class FilterBar {}
+export class FilterBarComponent {}

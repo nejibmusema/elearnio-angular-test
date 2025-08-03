@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductGrid } from './product-grid';
+import { NavBarComponent } from './nav-bar.component';
 
-describe('ProductGrid', () => {
-  let component: ProductGrid;
-  let fixture: ComponentFixture<ProductGrid>;
+describe('NavBarComponent', () => {
+  let component: NavBarComponent;
+  let fixture: ComponentFixture<NavBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductGrid]
-    })
-    .compileComponents();
+      imports: [NavBarComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ProductGrid);
+    fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

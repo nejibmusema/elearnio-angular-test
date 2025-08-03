@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'footer-bar',
   imports: [],
-  templateUrl: './footer-bar.html',
-  styleUrl: './footer-bar.scss',
+  templateUrl: './footer-bar.component.html',
 })
-export class FooterBar {}
+export class FooterBarComponent {}

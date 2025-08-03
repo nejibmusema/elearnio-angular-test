@@ -1,0 +1,13 @@
+<div class="flex justify-between items-center border-b border-gray-200 py-4">
+  <div>
+    <h2 class="text-lg font-semibold">{{ item().product.title }}</h2>
+    <p class="text-gray-600">Price: {{ item().product.price | currency }}</p>
+    <p class="text-gray-600">Quantity: {{ item().quantity }}</p>
+  </div>
+  <button
+    class="text-red-500 hover:text-red-700"
+    (click)="removeItem(item().product)"
+  >
+    <i class="fas fa-trash"></i>
+  </button>
+</div>
