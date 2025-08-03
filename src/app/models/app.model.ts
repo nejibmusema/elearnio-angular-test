@@ -6,6 +6,10 @@ export interface Product {
   image: string;
 }
 
+export interface ProductsResponse {
+  products: Product[];
+}
+
 export interface CartItem {
   product: Product;
   quantity: number;

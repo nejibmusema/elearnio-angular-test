@@ -3,3 +3,4 @@ export { FilterBarComponent } from './filter-bar/filter-bar.component';
 export { FooterBarComponent } from './footer-bar/footer-bar.component';
 export { CartComponent } from './cart/cart.component';
 export { ProductGridComponent } from './product-grid/product-grid.component';
+export { ProductItemComponent } from './product-grid/product-item/product-item.component';

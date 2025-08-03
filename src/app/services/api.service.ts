@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, catchError, throwError } from 'rxjs';
-import { Product } from '../models/app.model';
+import { Observable, delay, map, tap } from 'rxjs';
+import { Product, ProductsResponse } from '../models/app.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,16 +9,17 @@ import { Product } from '../models/app.model';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Simulates an HTTP GET request with a delay.
+   * @returns An Observable of the products data.
+   */
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://fakestoreapi.com/products').pipe(
-      map((response) =>
-        response.map((product) => ({
-          ...product,
-        })),
+    return this.http.get<ProductsResponse>('products.json').pipe(
+      delay(2000),
+      tap(() =>
+        console.log(`Fetched products from mock data with a 2000ms delay.`),
       ),
-      catchError((error) => {
-        return throwError(() => new Error('Error fetching products'));
-      }),
+      map((response) => response.products),
     );
   }
 }

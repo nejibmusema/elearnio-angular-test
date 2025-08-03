@@ -1,10 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ProductsStore } from '../../store/product.store';
-import { CartStore } from '../../store/cart.store';
+import { Component, OnInit, inject } from '@angular/core';
 import { Product } from '../../models/app.model';
-import { FilterBarComponent } from '../filter-bar/filter-bar.component';
+import { ProductsStore, CartStore } from '../../store';
 import { ProductItemComponent } from './product-item/product-item.component';
-
+import { FilterBarComponent } from '../filter-bar/filter-bar.component';
 @Component({
   selector: 'product-grid',
   imports: [ProductItemComponent, FilterBarComponent],
