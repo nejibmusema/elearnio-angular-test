@@ -19,7 +19,7 @@ import { ProductItemSkeletonComponent } from './product-item-skeleton/product-it
   templateUrl: './product-grid.component.html',
 })
 export class ProductGridComponent implements OnInit {
-  skeletons: number[] = [1, 2, 3, 4, 5, 6];
+  skeletons: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   productStore = inject(ProductsStore);
   cartStore = inject(CartStore);
   categoryStore = inject(CategoryStore);

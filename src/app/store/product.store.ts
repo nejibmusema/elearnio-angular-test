@@ -5,7 +5,7 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { PriceRange, Product } from '../models/app.model';
+import { FilterQuery, PriceRange, Product } from '../models/app.model';
 import { ApiService } from '../services/api.service';
 import { computed, inject } from '@angular/core';
 
@@ -27,11 +27,8 @@ export const ProductsStore = signalStore(
   withMethods((store) => {
     const apiService = inject(ApiService);
 
-    patchState(store, { loading: true, error: null });
-    const fetchProducts = (query?: {
-      categories: string[];
-      priceRange: PriceRange;
-    }) => {
+    const fetchProducts = (query?: FilterQuery) => {
+      patchState(store, { products: [], loading: true, error: null });
       apiService.getProducts(query).subscribe({
         next: (products) => {
           patchState(store, { products, loading: false });

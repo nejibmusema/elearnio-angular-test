@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, delay, map, tap } from 'rxjs';
-import { PriceRange, Product, ProductsResponse } from '../models/app.model';
+import {
+  FilterQuery,
+  PriceRange,
+  Product,
+  ProductsResponse,
+} from '../models/app.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,29 +14,12 @@ import { PriceRange, Product, ProductsResponse } from '../models/app.model';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  getProducts(query?: {
-    categories: string[];
-    priceRange: PriceRange;
-  }): Observable<Product[]> {
+  getProducts(query?: FilterQuery): Observable<Product[]> {
     return this._fetchJson().pipe(
       map((response) => {
-        debugger;
         let products = response.products;
-
-        if (query?.categories?.length) {
-          products = products.filter((product) =>
-            query.categories.includes(product.category),
-          );
-        }
-
-        if (query?.priceRange) {
-          products = products.filter((product) => {
-            const { min, max } = query.priceRange;
-            return (
-              (min === null || product.price >= min) &&
-              (max === null || product.price <= max)
-            );
-          });
+        if (query) {
+          products = this._getFilteredProducts(response.products, query);
         }
 
         return products;
@@ -65,5 +53,35 @@ export class ApiService {
     const min = Math.min(...prices);
     const max = Math.max(...prices);
     return { min, max };
+  }
+
+  private _getFilteredProducts(
+    products: Product[],
+    query: FilterQuery,
+  ): Product[] {
+    if (query?.categories?.length) {
+      products = products.filter((product) =>
+        query.categories.includes(product.category),
+      );
+    }
+
+    if (query?.priceRange) {
+      products = products.filter((product) => {
+        const { min, max } = query.priceRange;
+        return (
+          (min === null || product.price >= min) &&
+          (max === null || product.price <= max)
+        );
+      });
+    }
+
+    if (query?.searchTerm) {
+      debugger;
+      products = products.filter((product) =>
+        product.title.toLowerCase().includes(query.searchTerm.toLowerCase()),
+      );
+    }
+
+    return products;
   }
 }

@@ -23,4 +23,5 @@ export interface PriceRange {
 export interface FilterQuery {
   categories: string[];
   priceRange: PriceRange;
+  searchTerm: string;
 }

@@ -25,6 +25,7 @@ export class FilterBarComponent implements OnInit {
 
   private _formMaker = () => {
     return new FormGroup({
+      searchTerm: new FormControl<string>('', [Validators.minLength(2)]),
       categories: new FormControl<string[]>([]),
       priceRange: new FormGroup({
         min: new FormControl<number | null>(null, Validators.min(0)),
@@ -34,11 +35,11 @@ export class FilterBarComponent implements OnInit {
   };
 
   submit = () => {
-    debugger;
     if (this.filterForm.valid) {
-      const { categories, priceRange } = this.filterForm.value;
+      const { categories, priceRange, searchTerm } = this.filterForm.value;
       this.onQueryChange.emit({
-        categories: [categories],
+        searchTerm: searchTerm?.trim() || '',
+        categories: categories || [],
         priceRange: {
           min: priceRange.min ?? this.priceRange().min,
           max: priceRange.max ?? this.priceRange().max,

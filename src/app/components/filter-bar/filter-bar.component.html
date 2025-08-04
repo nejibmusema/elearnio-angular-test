@@ -4,6 +4,18 @@
 >
   <div class="sm:col-span-3">
     <div class="input-group">
+      <input
+        type="text"
+        formControlName="searchTerm"
+        placeholder="search here"
+        class="input"
+      />
+    </div>
+  </div>
+
+  <div class="sm:col-span-3">
+    <div class="input-group">
+      <label for="search">Categories</label>
       <select formControlName="categories" class="input">
         <option value="">All Categories</option>
         @for (category of categories(); track category) {
