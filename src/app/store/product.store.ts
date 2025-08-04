@@ -1,7 +1,13 @@
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
-import { Product } from '../models/app.model';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+import { PriceRange, Product } from '../models/app.model';
 import { ApiService } from '../services/api.service';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 
 interface ProductState {
   products: Product[];
@@ -22,8 +28,11 @@ export const ProductsStore = signalStore(
     const apiService = inject(ApiService);
 
     patchState(store, { loading: true, error: null });
-    const fetchProducts = () => {
-      apiService.getProducts().subscribe({
+    const fetchProducts = (query?: {
+      categories: string[];
+      priceRange: PriceRange;
+    }) => {
+      apiService.getProducts(query).subscribe({
         next: (products) => {
           patchState(store, { products, loading: false });
         },
@@ -35,4 +44,8 @@ export const ProductsStore = signalStore(
 
     return { fetchProducts };
   }),
+  withComputed((store) => ({
+    isLoading: computed(() => store.loading()),
+    hasError: computed(() => store.error() !== null),
+  })),
 );

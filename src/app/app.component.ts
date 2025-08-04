@@ -16,9 +16,9 @@ import {
     FooterBarComponent,
     CartComponent,
   ],
-  templateUrl: './app.html',
+  templateUrl: './app.component.html',
 })
-export class App {
+export class AppComponent {
   showCart: boolean = false;
 
   handleCartToggle = (isOpen: boolean) => {

@@ -2,4 +2,37 @@
 
 @theme {
   --font-poppins: Poppins, sans-serif;
+  --color-primary: #3d757f;
+  --color-secondary: #fec22e;
+}
+body {
+  @apply bg-gray-100 text-gray-900;
+}
+
+.button {
+  @apply p-2 rounded focus:outline-none focus:shadow-lg hover:shadow-lg transition-colors duration-200 cursor-pointer;
+
+  &-primary {
+    @apply bg-primary text-white;
+  }
+
+  &-secondary {
+    @apply bg-secondary text-black;
+  }
+
+  &-danger {
+    @apply bg-red-500 text-white;
+  }
+
+  &-square {
+    @apply rounded-none;
+  }
+}
+
+.input-group {
+  @apply flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-secondary;
+}
+
+.input {
+  @apply block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6;
 }

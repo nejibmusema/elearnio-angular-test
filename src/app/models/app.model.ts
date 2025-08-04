@@ -14,3 +14,13 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export interface PriceRange {
+  min: number;
+  max: number;
+}
+
+export interface FilterQuery {
+  categories: string[];
+  priceRange: PriceRange;
+}

@@ -9,10 +9,12 @@
   <div class="p-4 flex flex-col justify-start w-full">
     <h2 class="text-xl font-bold truncate">{{ product().title }}</h2>
     <span>Price: {{ product().price | number: "1.2-2" }} </span>
+    <span>Category: {{ product().category }} </span>
   </div>
+
   <div class="w-full">
     <button
-      class="bg-slate-500 text-white px-4 py-2 w-full"
+      class="button button-primary button-square w-full"
       (click)="onAddToCart(product())"
     >
       Add to Cart

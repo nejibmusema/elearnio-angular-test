@@ -1,0 +1,11 @@
+<div class="relative min-h-screen pb-16">
+  <nav-bar class="sticky top-0 z-10" (cartOpened)="handleCartToggle($event)" />
+  <product-grid />
+  <div
+    class="fixed top-0 right-0 inset-y-0 w-[400px] bg-white shadow-lg transform transition-transform duration-300 z-50 shadow-md"
+    [ngClass]="{ 'translate-x-full': !showCart, 'translate-x-0': showCart }"
+  >
+    <cart (closeCart)="handleCartToggle(!showCart)" />
+  </div>
+  <footer-bar class="fixed bottom-0 left-0 right-0" />
+</div>

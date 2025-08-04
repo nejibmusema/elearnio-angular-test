@@ -4,10 +4,7 @@
     <p class="text-gray-600">Price: {{ item().product.price | currency }}</p>
     <p class="text-gray-600">Quantity: {{ item().quantity }}</p>
   </div>
-  <button
-    class="text-red-500 hover:text-red-700"
-    (click)="removeItem(item().product)"
-  >
+  <button class="button button-danger" (click)="removeItem(item().product)">
     <i class="fas fa-trash"></i>
   </button>
 </div>
