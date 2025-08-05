@@ -28,3 +28,8 @@ export interface FilterQuery {
   searchTerm?: string;
   sortbyPrice?: SortOrder;
 }
+
+export interface CartQuantityChangeEvent {
+  product: Product;
+  quantity: number;
+}

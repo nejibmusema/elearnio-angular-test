@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { FilterQuery, PriceRange } from '../../models/app.model';
+import { priceRangeValidator } from '../../validators/priceRange.validator';
 
 @Component({
   selector: 'filter-bar',
@@ -31,10 +32,13 @@ export class FilterBarComponent implements OnInit {
     return new FormGroup({
       searchTerm: new FormControl<string>('', [Validators.minLength(2)]),
       categories: new FormControl<string[]>([]),
-      priceRange: new FormGroup({
-        min: new FormControl<number | null>(null, Validators.min(0)),
-        max: new FormControl<number | null>(null, Validators.min(0)),
-      }),
+      priceRange: new FormGroup(
+        {
+          min: new FormControl<number | null>(null, Validators.min(0)),
+          max: new FormControl<number | null>(null, Validators.min(0)),
+        },
+        { validators: priceRangeValidator },
+      ),
     });
   };
 

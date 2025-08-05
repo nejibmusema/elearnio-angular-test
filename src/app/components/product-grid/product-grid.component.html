@@ -12,7 +12,12 @@
       @for (skeleton of skeletons; track skeleton) {
         <product-item-skeleton class="w-full" />
       }
+    } @else if (productStore.products().length === 0) {
+      <div class="col-span-full text-center text-gray-500">
+        No products found.
+      </div>
     }
+
     @for (product of productStore.products(); track product.id) {
       <product-item
         [product]="product"

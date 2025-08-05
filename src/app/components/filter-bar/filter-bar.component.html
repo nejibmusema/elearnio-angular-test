@@ -59,13 +59,14 @@
       type="button"
       class="button button-primary w-full sm:w-auto"
       (click)="submit()"
+      [disabled]="filterForm.invalid || filterForm.pristine"
     >
       Apply Filters
     </button>
 
     <button
       type="button"
-      class="items-center flex gap-2 button-primary w-full sm:w-auto px-2"
+      class="button button-primary items-center flex gap-2 w-full sm:w-auto px-2"
       (click)="sortByPrice()"
     >
       @if (query.sortbyPrice === "desc") {
