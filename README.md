@@ -1,59 +1,109 @@
-# ElearnioAngularTest
+# 🛍️ Angular 20 Product Listing App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+This is a modern Angular 20+ application that demonstrates product listing, filtering, sorting, and cart management. It utilizes the latest Angular features including Signals and NGRX Signal Store for reactive state management.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Features
 
-```bash
-ng serve
-```
+- ✅ **Product Listing** – Displays a grid of products with image, price, and category.
+- ✅ **Filtering & Sorting** – Easily filter products by category and sort by price or name.
+- ✅ **Add to Cart** – Users can add products to a shopping cart with quantity management.
+- ✅ **Signal Store (NgRx)** – Uses `@ngrx/signals` for clean, reactive state.
+- ✅ **Signals API** – Built using Angular Signals for optimal reactivity.
+- ✅ **LocalStorage Persistence** – Cart data is saved and restored from `localStorage`.
+- ✅ **API Ready** – Currently reads from a local JSON file; easy swap-in of an API via `ApiService`.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 📦 Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerequisites
 
-```bash
-ng generate component component-name
-```
+- [Node.js](https://nodejs.org/) v18+
+- [Angular CLI](https://angular.io/cli) v20+
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Install Dependencies
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Run the App
 
 ```bash
-ng test
+npm run start
 ```
 
-## Running end-to-end tests
+That’s it! The app will be available at `http://localhost:4200/`.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
+## 🧠 Architecture Overview
+
+### Data Source
+
+Currently loads product data from a local `data.json` file via the `ApiService`.
+
+**To switch to a real API:**  
+Update `api.service.ts` with your HTTP requests using Angular's `HttpClient`.
+
+### State Management
+
+The app uses:
+
+- `@ngrx/signals` for creating a **signal store** (`CartStore`) to manage cart state.
+- Signals to track reactive state updates throughout the app.
+- LocalStorage to persist cart items across sessions.
+
+---
+
+## 🗂️ Folder Structure (Simplified)
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── product-grid/
+│   │   ├── product-item/
+│   │   └── filter-bar/
+│   ├── models/
+│   ├── services/
+│   └── store/         # Signal store (cart)
+├── assets/
+│   └── data.json      # Product mock data
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 🧩 Tech Stack
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Angular 20+
+- Angular Signals
+- NGRX Signal Store (`@ngrx/signals`)
+- Tailwind CSS or custom styles
+- LocalStorage for persistence
+
+---
+
+## 💡 Customization
+
+- 📦 To add a real backend: Replace mock JSON logic in `ApiService` with API calls.
+- 🎨 UI can be styled with Tailwind or any CSS framework.
+- 🛒 Cart logic is extendable for features like checkout, coupons, etc.
+
+---
+
+## 📃 License
+
+MIT – free to use and modify.
+
+---
+
+## 🤝 Contributions
+
+PRs and suggestions welcome!
+
+---
+
+Made with ❤️ using Angular 20 & Signals
