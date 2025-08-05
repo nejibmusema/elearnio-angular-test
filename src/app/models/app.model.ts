@@ -33,3 +33,5 @@ export interface CartQuantityChangeEvent {
   product: Product;
   quantity: number;
 }
+
+export const CART_STORAGE_KEY = 'app_cart_items';

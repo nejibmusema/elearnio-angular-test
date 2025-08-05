@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, delay, map, tap } from 'rxjs';
+import { Observable, delay, map } from 'rxjs';
 import {
+  CART_STORAGE_KEY,
+  CartItem,
   FilterQuery,
   PriceRange,
   Product,
@@ -37,6 +39,19 @@ export class ApiService {
     return this._fetchJson().pipe(
       map((response) => this._getPriceRange(response.products)),
     );
+  }
+
+  saveToLocalStorage(items: CartItem[]) {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  }
+
+  loadFromLocalStorage(): CartItem[] {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    try {
+      return raw ? (JSON.parse(raw) as CartItem[]) : [];
+    } catch {
+      return [];
+    }
   }
 
   private _fetchJson(): Observable<ProductsResponse> {

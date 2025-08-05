@@ -4,6 +4,7 @@
   <img
     [src]="product().image"
     alt="{{ product().title }}"
+    loading="lazy"
     class="w-full h-48 object-cover"
   />
   <div class="p-4 flex flex-col justify-start w-full">
@@ -14,10 +15,12 @@
 
   <div class="w-full">
     <button
-      class="button button-primary button-square w-full"
+      class="button button-primary button-square w-full transition-all duration-300"
+      [disabled]="wasAdded"
+      [ngClass]="{ 'bg-green-500': wasAdded }"
       (click)="onAddToCart(product())"
     >
-      Add to Cart
+      {{ wasAdded ? "Added" : "Add to Cart" }}
     </button>
   </div>
 </div>

@@ -5,7 +5,7 @@
   <button class="button button-secondary" (click)="toggleCart()">
     Cart
     @if (cartStore.totalItems()) {
-      <span class="font-bold">{{ cartStore.totalItems() }}</span>
+      <span class="">{{ cartStore.totalItems() }}</span>
     }
     <i class="ml-2 fas fa-shopping-cart"></i>
   </button>
