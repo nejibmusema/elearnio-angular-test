@@ -35,7 +35,6 @@ export const CategoryStore = signalStore(
     const fetchCategories = () => {
       apiService.getProductCategories().subscribe({
         next: (categories) => {
-          console.log('Fetched categories:', categories);
           patchState(store, { categories, loading: false });
         },
         error: (err) => {
