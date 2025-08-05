@@ -1,4 +1,4 @@
-<div class="p-4 relative">
+<div class="p-4 relative overflow-y-auto max-h-screen">
   <button (click)="handleClose()" class="absolute top-4 right-4">
     <i class="fas fa-times"></i>
   </button>
@@ -13,7 +13,9 @@
     }
   </div>
   @if (cartStore.items().length > 0) {
-    <div class="mt-4">
+    <div
+      class="text-right mt-4 fixed bottom-0 left-0 right-0 border-t border-gray-200 px-4 pt-1 shadow-lg"
+    >
       <h2 class="text-xl font-semibold">
         Total: {{ cartStore.totalPrice() | currency }}
       </h2>
