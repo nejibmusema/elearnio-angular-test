@@ -20,8 +20,11 @@ export interface PriceRange {
   max: number;
 }
 
+export type SortOrder = 'asc' | 'desc';
+
 export interface FilterQuery {
-  categories: string[];
-  priceRange: PriceRange;
-  searchTerm: string;
+  categories?: string[];
+  priceRange?: PriceRange;
+  searchTerm?: string;
+  sortbyPrice?: SortOrder;
 }

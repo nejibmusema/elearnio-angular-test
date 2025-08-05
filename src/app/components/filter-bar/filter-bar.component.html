@@ -1,21 +1,22 @@
 <form
   [formGroup]="filterForm"
-  class="bg-white px-4 py-6 rounded-md shadow-md grid grid-cols-1 items-start gap-4 sm:grid-cols-12"
+  class="bg-white px-4 py-6 rounded-md shadow-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 items-start"
 >
-  <div class="sm:col-span-3">
+  <!-- Search input -->
+  <div class="lg:col-span-2 sm:col-span-2 col-span-1">
     <div class="input-group">
       <input
         type="text"
         formControlName="searchTerm"
-        placeholder="search here"
+        placeholder="Search here"
         class="input"
       />
     </div>
   </div>
 
-  <div class="sm:col-span-3">
+  <!-- Categories -->
+  <div class="lg:col-span-2 sm:col-span-2 col-span-1">
     <div class="input-group">
-      <label for="search">Categories</label>
       <select formControlName="categories" class="input">
         <option value="">All Categories</option>
         @for (category of categories(); track category) {
@@ -25,44 +26,60 @@
     </div>
   </div>
 
-  <ng-container formGroupName="priceRange">
-    <div class="sm:col-span-3">
-      <div class="input-group">
-        <input
-          min="0"
-          type="number"
-          formControlName="min"
-          placeholder="Min Price"
-          class="input"
-        />
-      </div>
+  <!-- Price Range -->
+  <div
+    class="lg:col-span-4 sm:col-span-2 col-span-1 flex flex-col sm:flex-row gap-2"
+    formGroupName="priceRange"
+  >
+    <div class="input-group flex-1">
+      <input
+        min="0"
+        type="number"
+        formControlName="min"
+        placeholder="Min Price"
+        class="input"
+      />
     </div>
-
-    <div class="sm:col-span-3">
-      <div class="input-group">
-        <input
-          type="number"
-          min="0"
-          formControlName="max"
-          placeholder="Max Price"
-          class="input"
-        />
-      </div>
+    <div class="input-group flex-1">
+      <input
+        min="0"
+        type="number"
+        formControlName="max"
+        placeholder="Max Price"
+        class="input"
+      />
     </div>
-  </ng-container>
+  </div>
 
-  <div class="sm:col-span-3 flex items-start justify-start gap-6">
+  <!-- Actions -->
+  <div
+    class="lg:col-span-4 sm:col-span-2 col-span-1 flex flex-col sm:flex-row gap-2"
+  >
     <button
       type="button"
-      class="w-full button button-primary"
+      class="button button-primary w-full sm:w-auto"
       (click)="submit()"
     >
       Apply Filters
     </button>
+
+    <button
+      type="button"
+      class="items-center flex gap-2 button-primary w-full sm:w-auto px-2"
+      (click)="sortByPrice()"
+    >
+      @if (query.sortbyPrice === "desc") {
+        <i class="fa-solid fa-arrow-up"></i>
+      } @else {
+        <i class="fa-solid fa-arrow-down"></i>
+      }
+      Sort by Price
+    </button>
+
     @if (filterForm.dirty || filterForm.touched) {
       <button
         type="button"
-        class="w-full button button-secondary"
+        class="button button-secondary w-full sm:w-auto"
         (click)="reset()"
       >
         Reset Filters

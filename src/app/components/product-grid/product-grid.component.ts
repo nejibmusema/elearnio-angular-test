@@ -35,11 +35,7 @@ export class ProductGridComponent implements OnInit {
     this.cartStore.addItem(product);
   };
 
-  handleFilterChange = (query: FilterQuery | null) => {
-    if (!query) {
-      this.productStore.fetchProducts();
-    } else {
-      this.productStore.fetchProducts(query);
-    }
+  handleFilterChange = (query: FilterQuery) => {
+    this.productStore.fetchProducts(query);
   };
 }

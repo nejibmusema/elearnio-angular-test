@@ -15,7 +15,11 @@ import { FilterQuery, PriceRange } from '../../models/app.model';
 export class FilterBarComponent implements OnInit {
   categories = input.required<string[]>();
   priceRange = input.required<PriceRange>();
-  onQueryChange = output<FilterQuery | null>();
+  onQueryChange = output<FilterQuery>();
+
+  query: FilterQuery = {
+    sortbyPrice: 'desc',
+  };
 
   filterForm!: FormGroup;
 
@@ -37,18 +41,25 @@ export class FilterBarComponent implements OnInit {
   submit = () => {
     if (this.filterForm.valid) {
       const { categories, priceRange, searchTerm } = this.filterForm.value;
-      this.onQueryChange.emit({
+      this.query = {
+        ...this.query,
         searchTerm: searchTerm?.trim() || '',
         categories: categories || [],
         priceRange: {
           min: priceRange.min ?? this.priceRange().min,
           max: priceRange.max ?? this.priceRange().max,
         },
+      };
+      this.onQueryChange.emit({
+        ...this.query,
       });
     }
   };
 
   reset = () => {
+    this.query = {
+      sortbyPrice: 'asc',
+    };
     this.filterForm.reset({
       categories: [],
       priceRange: {
@@ -56,6 +67,13 @@ export class FilterBarComponent implements OnInit {
         max: null,
       },
     });
-    this.onQueryChange.emit(null);
+    this.onQueryChange.emit(this.query);
+  };
+
+  sortByPrice = () => {
+    this.query.sortbyPrice === 'asc'
+      ? (this.query.sortbyPrice = 'desc')
+      : (this.query.sortbyPrice = 'asc');
+    this.onQueryChange.emit(this.query);
   };
 }

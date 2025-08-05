@@ -61,13 +61,17 @@ export class ApiService {
   ): Product[] {
     if (query?.categories?.length) {
       products = products.filter((product) =>
-        query.categories.includes(product.category),
+        (query.categories || []).includes(product.category),
       );
     }
 
-    if (query?.priceRange) {
+    if (
+      query?.priceRange &&
+      query.priceRange.min !== undefined &&
+      query.priceRange.max !== undefined
+    ) {
+      const { min, max } = query.priceRange;
       products = products.filter((product) => {
-        const { min, max } = query.priceRange;
         return (
           (min === null || product.price >= min) &&
           (max === null || product.price <= max)
@@ -76,10 +80,18 @@ export class ApiService {
     }
 
     if (query?.searchTerm) {
-      debugger;
       products = products.filter((product) =>
-        product.title.toLowerCase().includes(query.searchTerm.toLowerCase()),
+        product.title
+          .toLowerCase()
+          .includes((query.searchTerm || '').toLowerCase()),
       );
+    }
+    if (query?.sortbyPrice) {
+      products = products.sort((a, b) => {
+        return query.sortbyPrice === 'asc'
+          ? a.price - b.price
+          : b.price - a.price;
+      });
     }
 
     return products;
