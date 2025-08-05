@@ -1,0 +1,29 @@
+<div class="p-4 mb-8 flex flex-col">
+  <filter-bar
+    [categories]="categoryStore.categories()"
+    [priceRange]="priceRangeStore.priceRange()"
+    (onQueryChange)="handleFilterChange($event)"
+    class="my-4"
+  />
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-4"
+  >
+    @if (productStore.isLoading()) {
+      @for (skeleton of skeletons; track skeleton) {
+        <product-item-skeleton class="w-full" />
+      }
+    } @else if (productStore.products().length === 0) {
+      <div class="col-span-full text-center text-gray-500">
+        No products found.
+      </div>
+    }
+
+    @for (product of productStore.products(); track product.id) {
+      <product-item
+        [product]="product"
+        (addToCart)="onAddToCart($event)"
+        class="w-full"
+      />
+    }
+  </div>
+</div>

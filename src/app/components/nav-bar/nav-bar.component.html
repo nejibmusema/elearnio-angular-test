@@ -1,0 +1,12 @@
+<nav class="bg-white p-4 flex justify-between items-center shadow-md">
+  <h1>
+    <a class="text-black text-2xl font-bold">eLearnio</a>
+  </h1>
+  <button class="button button-secondary" (click)="toggleCart()">
+    Cart
+    @if (cartStore.totalItems()) {
+      <span class="">{{ cartStore.totalItems() }}</span>
+    }
+    <i class="ml-2 fas fa-shopping-cart"></i>
+  </button>
+</nav>
